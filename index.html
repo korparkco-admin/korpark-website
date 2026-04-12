@@ -504,34 +504,47 @@
       </div>
       <div class="contact-form">
         <h3>문의하기</h3>
-        <div class="form-group">
-          <label for="name">이름</label>
-          <input type="text" id="name" placeholder="이름을 입력하세요">
-        </div>
-        <div class="form-group">
-          <label for="email">이메일</label>
-          <input type="email" id="email" placeholder="이메일을 입력하세요">
-        </div>
-        <div class="form-group">
-          <label for="interest">관심 분야</label>
-          <select id="interest">
-            <option value="">선택하세요</option>
-            <option value="camping">캠핑·숙박</option>
-            <option value="drone">드론 교육</option>
-            <option value="fishing">드론 낚시</option>
-            <option value="trekking">트레킹·관광</option>
-            <option value="multicultural">다문화 교육</option>
-            <option value="laser">레이저사격</option>
-            <option value="package">패키지 상품</option>
-            <option value="university">대학·동아리 연계</option>
-            <option value="other">기타</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">메시지</label>
-          <textarea id="message" placeholder="문의 내용을 입력하세요"></textarea>
-        </div>
-        <button type="button" class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="alert('감사합니다! 빠른 시일 내에 연락드리겠습니다.')">문의 보내기</button>
+        <form action="https://formspree.io/f/korpark.co@gmail.com" method="POST" onsubmit="setTimeout(function(){document.getElementById('contact-form').reset();},100);" id="contact-form">
+          <input type="hidden" name="_subject" value="[KorPark] 새 문의가 도착했습니다">
+          <input type="hidden" name="_next" value="https://korpark.com/#contact">
+          <input type="text" name="_gotcha" style="display:none">
+          <div class="form-group">
+            <label for="name">이름</label>
+            <input type="text" name="name" id="name" placeholder="이름을 입력하세요" required>
+          </div>
+          <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="email" name="email" id="email" placeholder="이메일을 입력하세요" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">연락처</label>
+            <input type="tel" name="phone" id="phone" placeholder="전화번호를 입력하세요">
+          </div>
+          <div class="form-group">
+            <label for="interest">관심 분야</label>
+            <select name="interest" id="interest" required>
+              <option value="">선택하세요</option>
+              <option value="캠핑·숙박">캠핑·숙박</option>
+              <option value="드론 교육">드론 교육</option>
+              <option value="드론 낚시">드론 낚시</option>
+              <option value="트레킹·관광">트레킹·관광</option>
+              <option value="다문화 교육">다문화 교육</option>
+              <option value="레이저사격">레이저사격</option>
+              <option value="패키지 상품">패키지 상품</option>
+              <option value="대학·동아리 연계">대학·동아리 연계</option>
+              <option value="외국인 통신·송금">외국인 통신·송금</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">메시지</label>
+            <textarea name="message" id="message" placeholder="문의 내용을 입력하세요" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">문의 보내기</button>
+        </form>
+        <p style="margin-top: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.35); text-align: center;">
+          제출하시면 korpark.co@gmail.com으로 전달됩니다
+        </p>
       </div>
     </div>
   </div>
