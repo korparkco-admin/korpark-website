@@ -165,7 +165,8 @@ a:hover { color: var(--accent); }
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 40%, var(--primary-mid) 70%, var(--primary-light) 100%);
+  background: linear-gradient(135deg, rgba(15,43,60,0.75) 0%, rgba(26,61,82,0.7) 40%, rgba(42,90,110,0.6) 100%),
+              url('../images/main.jpeg') center/cover no-repeat;
   position: relative;
   overflow: hidden;
   padding-top: 64px;
@@ -178,7 +179,7 @@ a:hover { color: var(--accent); }
   right: -30%;
   width: 80%;
   height: 200%;
-  background: radial-gradient(ellipse, rgba(58, 122, 148, 0.3) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(58, 122, 148, 0.2) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -666,6 +667,51 @@ a:hover { color: var(--accent); }
 
 .footer-links a:hover { color: var(--white); }
 
+/* ---- Photo Sections ---- */
+.photo-banner {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 2rem;
+}
+
+.photo-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.photo-grid img:hover {
+  transform: scale(1.03);
+}
+
+.photo-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 2rem;
+}
+
+.photo-row img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
 /* ---- Responsive ---- */
 @media (max-width: 968px) {
   .cards-grid,
@@ -696,6 +742,9 @@ a:hover { color: var(--accent); }
 @media (max-width: 640px) {
   .cards-grid,
   .zone-grid { grid-template-columns: 1fr; }
+  .photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-row { grid-template-columns: 1fr; }
+  .photo-banner { height: 200px; }
   .hero h1 { font-size: 1.8rem; }
   h2 { font-size: 1.6rem; }
   .section { padding: 60px 0; }
