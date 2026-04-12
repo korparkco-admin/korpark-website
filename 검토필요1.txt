@@ -1,0 +1,303 @@
+﻿거금도의 해안도로트래킹을 지도와 함께 비주얼하게 표현하려면?8단계8단계거금도 해안도로 트레킹 — 지도 비주얼 구현 방안
+현재 사이트는 단순 테이블로만 코스 정보를 표시하고 있습니다. 아래에 Leaflet.js + OpenStreetMap 기반으로 완전히 무료이고 API 키 없이 바로 구현할 수 있는 코드를 제안드립니다.
+
+구현 방향 선택지 비교
+방식장점단점Leaflet.js + OpenStreetMap무료, API키 불필요, 경량위성뷰 없음Google Maps Embed위성뷰 가능무료 한도 초과 시 과금Kakao Maps API한국어 지명 풍부API키 필요, 무료 한도 존재정적 이미지(SVG 일러스트)완전 자유로운 디자인실시간 지도 아님
+→ 추천: Leaflet.js + OpenStreetMap (무료, 즉시 적용 가능)
+단, 위성/하이브리드 뷰를 원한다면 Kakao Maps API (월 30만 호출 무료)가 한국 환경에 더 적합합니다.
+
+완성 구현 코드
+아래 코드를 #trekking 섹션 내에 삽입하면 됩니다.
+<head>에 추가할 내용:
+html<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+트레킹 지도 섹션 HTML:
+html<div class="trek-map-section">
+  <div class="trek-map-header">
+    <h3>🗺️ 거금도 해안도로 트레킹 코스</h3>
+    <p>적대봉 정상에서 내려다보는 제주도 조망 — 코리아파크 인접 코스</p>
+    <div class="trek-legend">
+      <span class="legend-item"><span class="dot start"></span> 출발/도착</span>
+      <span class="legend-item"><span class="dot waypoint"></span> 주요 포인트</span>
+      <span class="legend-item"><span class="dot camp"></span> 코리아파크</span>
+    </div>
+  </div>
+
+  <div class="trek-map-wrapper">
+    <!-- 지도 영역 -->
+    <div id="trekMap" style="height: 480px; border-radius: 12px;"></div>
+
+    <!-- 우측 포인트 패널 -->
+    <div class="trek-points-panel">
+      <div class="trek-point active" data-lat="34.4483" data-lng="127.0689">
+        <div class="point-num">🏕</div>
+        <div class="point-info">
+          <strong>코리아파크 (출발)</strong>
+          <span>금산면 돈청길 25-17</span>
+        </div>
+      </div>
+      <div class="trek-point" data-lat="34.4721" data-lng="127.0821">
+        <div class="point-num">1</div>
+        <div class="point-info">
+          <strong>거금대교 전망</strong>
+          <span>다리 + 바다 + 석양 포토스폿</span>
+        </div>
+      </div>
+      <div class="trek-point" data-lat="34.4550" data-lng="127.1050">
+        <div class="point-num">2</div>
+        <div class="point-info">
+          <strong>해돌마루 카페</strong>
+          <span>오션뷰 / 휴식 포인트</span>
+        </div>
+      </div>
+      <div class="trek-point" data-lat="34.4312" data-lng="127.1180">
+        <div class="point-num">3</div>
+        <div class="point-info">
+          <strong>신흥 방파제</strong>
+          <span>드론 낚시 포인트 연계</span>
+        </div>
+      </div>
+      <div class="trek-point" data-lat="34.4050" data-lng="127.0980">
+        <div class="point-num">4</div>
+        <div class="point-info">
+          <strong>풍남 방파제</strong>
+          <span>고급 낚시 챌린지 포인트</span>
+        </div>
+      </div>
+      <div class="trek-point" data-lat="34.4180" data-lng="127.0650">
+        <div class="point-num">⛰</div>
+        <div class="point-info">
+          <strong>적대봉 정상 (592m)</strong>
+          <span>9km / 4시간 · 맑은 날 제주 조망</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 코스 요약 카드 -->
+  <div class="trek-summary">
+    <div class="summary-card">
+      <span class="summary-icon">📏</span>
+      <strong>총 거리</strong>
+      <span>약 9km</span>
+    </div>
+    <div class="summary-card">
+      <span class="summary-icon">⏱</span>
+      <strong>소요 시간</strong>
+      <span>3~4시간</span>
+    </div>
+    <div class="summary-card">
+      <span class="summary-icon">📶</span>
+      <strong>난이도</strong>
+      <span>중급</span>
+    </div>
+    <div class="summary-card">
+      <span class="summary-icon">🌅</span>
+      <strong>추천 계절</strong>
+      <span>봄·가을</span>
+    </div>
+  </div>
+</div>
+지도 초기화 JavaScript (main.js에 추가):
+javascript// 거금도 트레킹 지도
+function initTrekMap() {
+  const map = L.map('trekMap', {
+    center: [34.440, 127.085],
+    zoom: 13,
+    zoomControl: true
+  });
+
+  // 타일 레이어 (OpenStreetMap)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors',
+    maxZoom: 18
+  }).addTo(map);
+
+  // 트레킹 경로 좌표 (거금도 해안 순환)
+  const trailCoords = [
+    [34.4483, 127.0689], // 코리아파크
+    [34.4600, 127.0750],
+    [34.4721, 127.0821], // 거금대교
+    [34.4680, 127.0950],
+    [34.4550, 127.1050], // 해돌마루
+    [34.4420, 127.1130],
+    [34.4312, 127.1180], // 신흥 방파제
+    [34.4150, 127.1100],
+    [34.4050, 127.0980], // 풍남 방파제
+    [34.4020, 127.0820],
+    [34.4080, 127.0680],
+    [34.4180, 127.0650], // 적대봉
+    [34.4350, 127.0660],
+    [34.4483, 127.0689], // 복귀
+  ];
+
+  // 경로선 그리기
+  L.polyline(trailCoords, {
+    color: '#4a9ab4',
+    weight: 4,
+    opacity: 0.85,
+    dashArray: null,
+    lineJoin: 'round'
+  }).addTo(map);
+
+  // 마커 정의
+  const points = [
+    { lat: 34.4483, lng: 127.0689, label: '🏕 코리아파크', type: 'camp', desc: '출발/도착 · 주차 가능' },
+    { lat: 34.4721, lng: 127.0821, label: '① 거금대교', type: 'photo', desc: '일몰 포토스폿' },
+    { lat: 34.4550, lng: 127.1050, label: '② 해돌마루 카페', type: 'rest', desc: '오션뷰 · 휴식' },
+    { lat: 34.4312, lng: 127.1180, label: '③ 신흥 방파제', type: 'spot', desc: '드론 낚시 체험 연계' },
+    { lat: 34.4050, lng: 127.0980, label: '④ 풍남 방파제', type: 'spot', desc: '낚시 챌린지 포인트' },
+    { lat: 34.4180, lng: 127.0650, label: '⛰ 적대봉 정상', type: 'summit', desc: '592m · 제주도 조망' },
+  ];
+
+  // 색상 매핑
+  const colorMap = { camp: '#f59e0b', photo: '#ef4444', rest: '#10b981', spot: '#4a9ab4', summit: '#8b5cf6' };
+
+  points.forEach(p => {
+    const icon = L.divIcon({
+      className: 'trek-marker',
+      html: `<div style="
+        background:${colorMap[p.type]};
+        color:white;
+        border-radius:50%;
+        width:36px;height:36px;
+        display:flex;align-items:center;justify-content:center;
+        font-size:15px;font-weight:700;
+        box-shadow:0 2px 8px rgba(0,0,0,0.3);
+        border:2px solid white;
+      ">${p.label.split(' ')[0]}</div>`,
+      iconSize: [36, 36],
+      iconAnchor: [18, 18]
+    });
+
+    L.marker([p.lat, p.lng], { icon })
+      .addTo(map)
+      .bindPopup(`<b>${p.label}</b><br><small>${p.desc}</small>`, { maxWidth: 160 });
+  });
+
+  // 사이드 패널 클릭 시 지도 이동
+  document.querySelectorAll('.trek-point').forEach(el => {
+    el.addEventListener('click', () => {
+      document.querySelectorAll('.trek-point').forEach(e => e.classList.remove('active'));
+      el.classList.add('active');
+      const lat = parseFloat(el.dataset.lat);
+      const lng = parseFloat(el.dataset.lng);
+      map.flyTo([lat, lng], 15, { duration: 1.2 });
+    });
+  });
+}
+
+// trekking 섹션이 뷰포트에 들어올 때 지도 초기화 (성능 최적화)
+const observer = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    initTrekMap();
+    observer.disconnect();
+  }
+}, { threshold: 0.1 });
+
+const trekMapEl = document.getElementById('trekMap');
+if (trekMapEl) observer.observe(trekMapEl);
+CSS (style.css에 추가):
+css.trek-map-section { margin-top: 3rem; }
+
+.trek-map-header { text-align: center; margin-bottom: 1.5rem; }
+.trek-map-header h3 { font-size: 1.6rem; color: var(--primary); margin-bottom: .5rem; }
+
+.trek-legend { display: flex; gap: 1.5rem; justify-content: center; margin-top: .8rem; }
+.legend-item { display: flex; align-items: center; gap: .4rem; font-size: .85rem; color: #555; }
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.start  { background: #f59e0b; }
+.dot.waypoint { background: #4a9ab4; }
+.dot.camp   { background: #8b5cf6; }
+
+.trek-map-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1rem;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .trek-map-wrapper { grid-template-columns: 1fr; }
+}
+
+.trek-points-panel {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  max-height: 480px;
+  overflow-y: auto;
+}
+.trek-point {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding: .75rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #f8f9fa;
+  border: 2px solid transparent;
+  transition: all .25s;
+}
+.trek-point:hover, .trek-point.active {
+  border-color: var(--accent);
+  background: #e8f4f8;
+}
+.point-num {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: .85rem;
+  flex-shrink: 0;
+}
+.point-info { display: flex; flex-direction: column; }
+.point-info strong { font-size: .9rem; color: var(--primary); }
+.point-info span { font-size: .78rem; color: var(--text-light); }
+
+.trek-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+@media (max-width: 600px) {
+  .trek-summary { grid-template-columns: repeat(2, 1fr); }
+}
+.summary-card {
+  background: var(--primary);
+  color: white;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  display: flex; flex-direction: column; gap: .3rem;
+}
+.summary-icon { font-size: 1.5rem; }
+.summary-card strong { font-size: .85rem; opacity: .8; }
+.summary-card span { font-size: 1.1rem; font-weight: 700; }
+```
+
+---
+
+### 완성 후 예상 UI 구조
+```
+┌─────────────────────────────────────────────────────┐
+│  🗺️ 거금도 해안도로 트레킹 코스                        │
+│  적대봉 정상에서 내려다보는 제주도 조망 · 코리아파크 인접  │
+│  ● 출발/도착  ● 주요 포인트  ● 코리아파크 [범례]         │
+├──────────────────────────┬──────────────────────────┤
+│                          │ 🏕 코리아파크 (출발)       │
+│   [Leaflet 지도]          │ ① 거금대교 전망           │
+│   - 해안선 경로(파란선)    │ ② 해돌마루 카페           │
+│   - 컬러 마커들           │ ③ 신흥 방파제             │
+│   ← 클릭 시 flyTo 이동   │ ④ 풍남 방파제             │
+│                          │ ⛰ 적대봉 정상             │
+├──────────────────────────┴──────────────────────────┤
+│  📏 약 9km │ ⏱ 3~4시간 │ 📶 중급 │ 🌅 봄·가을 추천  │
+└─────────────────────────────────────────────────────┘
+
+추가로 고려할 고급 옵션
+고도 프로필 그래프: Chart.js를 사용해 지도 아래에 해발고도 변화를 시각화할 수 있습니다 (코리아파크 10m → 적대봉 592m).
+GPX 파일 연동: 실제 트레킹 GPS 데이터가 있다면 leaflet-gpx 플러그인으로 정확한 경로를 표시할 수 있습니다.
+계절별 테마 배경: 지도 상단 배너에 봄/여름/가을/겨울 탭을 두고 계절별 추천 정보(벚꽃, 단풍 등)를 전환하는 방식도 매력적입니다.
+가장 임팩트가 크면서 구현이 빠른 방법은 Leaflet.js 지도 + 우측 클릭 패널 조합입니다. GPX 트랙 데이터를 직접 획득하실 수 있다면 훨씬 정밀한 경로 표현이 가능합니다.

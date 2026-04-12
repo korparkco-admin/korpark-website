@@ -189,6 +189,61 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.overflow = '';
   }
 
+  // ---- Trekking Map (Leaflet.js) ----
+  function initTrekMap() {
+    if (typeof L === 'undefined') return;
+    var map = L.map('trekMap', { center: [34.440, 127.085], zoom: 13, zoomControl: true });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap',
+      maxZoom: 18
+    }).addTo(map);
+
+    var trailCoords = [
+      [34.4483, 127.0689],[34.4600, 127.0750],[34.4721, 127.0821],
+      [34.4680, 127.0950],[34.4550, 127.1050],[34.4420, 127.1130],
+      [34.4312, 127.1180],[34.4150, 127.1100],[34.4050, 127.0980],
+      [34.4020, 127.0820],[34.4080, 127.0680],[34.4180, 127.0650],
+      [34.4350, 127.0660],[34.4483, 127.0689]
+    ];
+
+    L.polyline(trailCoords, { color: '#4a9ab4', weight: 4, opacity: 0.85, lineJoin: 'round' }).addTo(map);
+
+    var points = [
+      { lat: 34.4483, lng: 127.0689, label: '🏕', desc: '코리아파크 (출발/도착)', color: '#f59e0b' },
+      { lat: 34.4721, lng: 127.0821, label: '①', desc: '거금대교 전망', color: '#ef4444' },
+      { lat: 34.4550, lng: 127.1050, label: '②', desc: '해돌마루 카페', color: '#10b981' },
+      { lat: 34.4312, lng: 127.1180, label: '③', desc: '신흥 방파제', color: '#4a9ab4' },
+      { lat: 34.4050, lng: 127.0980, label: '④', desc: '풍남 방파제', color: '#4a9ab4' },
+      { lat: 34.4180, lng: 127.0650, label: '⛰', desc: '적대봉 정상 (592m)', color: '#8b5cf6' }
+    ];
+
+    points.forEach(function(p) {
+      var icon = L.divIcon({
+        className: 'trek-marker',
+        html: '<div style="background:' + p.color + ';color:white;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,0.3);border:2px solid white;">' + p.label + '</div>',
+        iconSize: [32, 32], iconAnchor: [16, 16]
+      });
+      L.marker([p.lat, p.lng], { icon: icon }).addTo(map).bindPopup('<b>' + p.desc + '</b>', { maxWidth: 160 });
+    });
+
+    document.querySelectorAll('.trek-point').forEach(function(el) {
+      el.addEventListener('click', function() {
+        document.querySelectorAll('.trek-point').forEach(function(e) { e.classList.remove('active'); });
+        el.classList.add('active');
+        map.flyTo([parseFloat(el.dataset.lat), parseFloat(el.dataset.lng)], 15, { duration: 1.2 });
+      });
+    });
+  }
+
+  var trekMapEl = document.getElementById('trekMap');
+  if (trekMapEl) {
+    var mapObserver = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) { initTrekMap(); mapObserver.disconnect(); }
+    }, { threshold: 0.1 });
+    mapObserver.observe(trekMapEl);
+  }
+
   // ---- Scroll Progress Bar ----
   var progressBar = document.getElementById('scroll-progress');
   if (progressBar) {

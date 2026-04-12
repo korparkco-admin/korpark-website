@@ -20,6 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="css/style.css">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2BVJ68HBY1"></script>
@@ -298,6 +299,54 @@
         </tr>
       </tbody>
     </table>
+
+    <!-- 거금도 트레킹 지도 -->
+    <div class="trek-map-section">
+      <div class="trek-map-header">
+        <h3>거금도 해안도로 트레킹 코스</h3>
+        <p>적대봉 정상에서 내려다보는 제주도 조망 — 코리아파크 인접 코스</p>
+        <div class="trek-legend">
+          <span class="legend-item"><span class="dot start"></span> 출발/도착</span>
+          <span class="legend-item"><span class="dot waypoint"></span> 주요 포인트</span>
+          <span class="legend-item"><span class="dot camp"></span> 적대봉</span>
+        </div>
+      </div>
+      <div class="trek-map-wrapper">
+        <div id="trekMap" style="height:480px; border-radius:12px;"></div>
+        <div class="trek-points-panel">
+          <div class="trek-point active" data-lat="34.4483" data-lng="127.0689">
+            <div class="point-num">🏕</div>
+            <div class="point-info"><strong>코리아파크 (출발)</strong><span>금산면 돈청길 25-17</span></div>
+          </div>
+          <div class="trek-point" data-lat="34.4721" data-lng="127.0821">
+            <div class="point-num">1</div>
+            <div class="point-info"><strong>거금대교 전망</strong><span>다리+바다+석양 포토스폿</span></div>
+          </div>
+          <div class="trek-point" data-lat="34.4550" data-lng="127.1050">
+            <div class="point-num">2</div>
+            <div class="point-info"><strong>해돌마루 카페</strong><span>오션뷰 / 휴식 포인트</span></div>
+          </div>
+          <div class="trek-point" data-lat="34.4312" data-lng="127.1180">
+            <div class="point-num">3</div>
+            <div class="point-info"><strong>신흥 방파제</strong><span>드론 낚시 포인트 연계</span></div>
+          </div>
+          <div class="trek-point" data-lat="34.4050" data-lng="127.0980">
+            <div class="point-num">4</div>
+            <div class="point-info"><strong>풍남 방파제</strong><span>고급 낚시 챌린지 포인트</span></div>
+          </div>
+          <div class="trek-point" data-lat="34.4180" data-lng="127.0650">
+            <div class="point-num">⛰</div>
+            <div class="point-info"><strong>적대봉 정상 (592m)</strong><span>9km / 4시간 · 맑은 날 제주 조망</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="trek-summary">
+        <div class="summary-card"><span class="summary-icon">📏</span><strong>총 거리</strong><span>약 9km</span></div>
+        <div class="summary-card"><span class="summary-icon">⏱</span><strong>소요 시간</strong><span>3~4시간</span></div>
+        <div class="summary-card"><span class="summary-icon">📶</span><strong>난이도</strong><span>중급</span></div>
+        <div class="summary-card"><span class="summary-icon">🌅</span><strong>추천 계절</strong><span>봄·가을</span></div>
+      </div>
+    </div>
 
     <div class="info-grid" style="margin-top: 3rem;">
       <div class="info-box">
@@ -869,6 +918,7 @@
   </div>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

@@ -673,6 +673,89 @@ a.flow-step:hover {
 
 .footer-links a:hover { color: var(--white); }
 
+/* ---- Trek Map ---- */
+.trek-map-section { margin-top: 3rem; }
+.trek-map-header { text-align: center; margin-bottom: 1.5rem; }
+.trek-map-header h3 { font-size: 1.6rem; color: var(--primary); margin-bottom: .5rem; }
+.trek-legend { display: flex; gap: 1.5rem; justify-content: center; margin-top: .8rem; }
+.legend-item { display: flex; align-items: center; gap: .4rem; font-size: .85rem; color: var(--text-mid); }
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.start { background: #f59e0b; }
+.dot.waypoint { background: #4a9ab4; }
+.dot.camp { background: #8b5cf6; }
+
+.trek-map-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1rem;
+  align-items: start;
+}
+
+.trek-points-panel {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.trek-point {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding: .75rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  background: var(--bg-white);
+  border: 2px solid transparent;
+  transition: all .25s;
+}
+
+.trek-point:hover, .trek-point.active {
+  border-color: var(--accent);
+  background: #e8f4f8;
+}
+
+.point-num {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: .85rem;
+  flex-shrink: 0;
+}
+
+.point-info { display: flex; flex-direction: column; }
+.point-info strong { font-size: .9rem; color: var(--primary); }
+.point-info span { font-size: .78rem; color: var(--text-light); }
+
+.trek-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.summary-card {
+  background: var(--primary);
+  color: white;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  display: flex; flex-direction: column; gap: .3rem;
+}
+
+.summary-icon { font-size: 1.5rem; }
+.summary-card strong { font-size: .85rem; opacity: .8; }
+.summary-card span { font-size: 1.1rem; font-weight: 700; }
+
+@media (max-width: 768px) {
+  .trek-map-wrapper { grid-template-columns: 1fr; }
+  #trekMap { height: 350px !important; }
+  .trek-summary { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* ---- Scroll Progress Bar ---- */
 .scroll-progress {
   position: fixed;
