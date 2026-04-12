@@ -908,4 +908,33 @@ a.flow-step:hover {
   .btn { justify-content: center; }
   .trek-table { font-size: 0.82rem; }
   .trek-table th, .trek-table td { padding: 10px 12px; }
+  .flow-step { width: 100%; }
+  a.flow-step { width: 100%; }
+}
+
+@media (max-width: 414px) {
+  .hero h1 { font-size: 1.5rem; }
+  .hero p { font-size: 0.95rem; }
+  .hero-badge { font-size: 0.75rem; padding: 5px 12px; }
+  h2 { font-size: 1.35rem; }
+  h3 { font-size: 1.15rem; }
+  .section { padding: 48px 0; }
+  .container { padding: 0 16px; }
+  .card { padding: 24px 20px; }
+  .zone-card { padding: 24px 20px; }
+  .btn { padding: 12px 20px; font-size: 0.9rem; min-height: 44px; }
+  .nav-links a { padding: 12px 14px; min-height: 44px; }
+  .photo-grid { grid-template-columns: 1fr; }
+  .photo-grid img { height: 180px; }
+  .photo-banner { height: 180px; }
+  .photo-row img { height: 200px; }
+  .trek-table { font-size: 0.75rem; display: block; overflow-x: auto; }
+  .trek-table th, .trek-table td { padding: 8px 10px; white-space: nowrap; }
+  .package-card { flex-direction: column; text-align: center; }
+  .package-icon { margin: 0 auto; }
+  .hero-stat .number { font-size: 1.6rem; }
+  .hero-stat .label { font-size: 0.7rem; }
+  .contact-form { padding: 24px 16px; }
+  .info-box { padding: 24px 16px; }
+  img { max-width: 100%; height: auto; }
 }
