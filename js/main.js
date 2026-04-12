@@ -271,7 +271,7 @@ function initTrekMap() {
   var mapEl = document.getElementById('trekMap');
   if (!mapEl || mapEl._leaflet_id) return;
 
-  var map = L.map('trekMap', { center: [34.393, 127.080], zoom: 12 });
+  var map = L.map('trekMap', { center: [34.460, 127.155], zoom: 12 });
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors',
@@ -279,22 +279,22 @@ function initTrekMap() {
   }).addTo(map);
 
   var trailCoords = [
-    [34.4060, 127.0808],[34.4080, 127.0700],[34.4080, 127.0625],
-    [34.4050, 127.0550],[34.4000, 127.0500],[34.3950, 127.0490],
-    [34.3900, 127.0550],[34.3880, 127.0700],[34.3925, 127.0852],
-    [34.3850, 127.1020],[34.3920, 127.1050],[34.4020, 127.1050],
-    [34.4060, 127.0950],[34.4060, 127.0808]
+    [34.4657, 127.1296],[34.4850, 127.1250],[34.4959, 127.1277],
+    [34.4880, 127.1180],[34.4700, 127.1130],[34.4500, 127.1150],
+    [34.4350, 127.1300],[34.4300, 127.1500],[34.4350, 127.1700],
+    [34.4401, 127.2013],[34.4636, 127.1798],[34.4700, 127.1600],
+    [34.4750, 127.1400],[34.4657, 127.1296]
   ];
   L.polyline(trailCoords, { color: '#4a9ab4', weight: 4, opacity: 0.85 }).addTo(map);
 
   var colorMap = { camp:'#f59e0b', photo:'#ef4444', rest:'#10b981', spot:'#4a9ab4', summit:'#8b5cf6' };
   var points = [
-    { lat:34.4060, lng:127.0808, label:'🏕', type:'camp',   title:'코리아파크 (출발)', desc:'금산면 돈청길 25-17' },
-    { lat:34.4080, lng:127.0625, label:'①',  type:'photo',  title:'거금대교 전망',     desc:'일몰 포토스폿' },
-    { lat:34.3920, lng:127.1050, label:'②',  type:'spot',   title:'신흥항',            desc:'드론 낚시 체험 포인트' },
-    { lat:34.3850, lng:127.1020, label:'③',  type:'rest',   title:'익금해수욕장',      desc:'여름 해수욕 · 서핑' },
-    { lat:34.4020, lng:127.1050, label:'④',  type:'spot',   title:'풍남항',            desc:'낚시 챌린지 포인트' },
-    { lat:34.3925, lng:127.0852, label:'⛰', type:'summit', title:'적대봉 정상 592m',  desc:'제주도 조망 · 왕복 4시간' }
+    { lat:34.4657, lng:127.1296, label:'🏕', type:'camp',   title:'코리아파크 (출발)', desc:'금산면 돈청길 25-17' },
+    { lat:34.4959, lng:127.1277, label:'①',  type:'photo',  title:'거금대교',          desc:'일몰 포토스폿' },
+    { lat:34.4500, lng:127.1150, label:'②',  type:'spot',   title:'서해안 해안도로',   desc:'드론 낚시 포인트' },
+    { lat:34.4401, lng:127.2013, label:'③',  type:'rest',   title:'익금해수욕장',      desc:'여름 해수욕 · 서핑' },
+    { lat:34.4636, lng:127.1798, label:'⛰', type:'summit', title:'적대봉 정상 592m',  desc:'제주도 조망 · 왕복 4시간' },
+    { lat:34.4591, lng:127.1253, label:'④',  type:'spot',   title:'금산면 중심',       desc:'편의시설 · 식당가' }
   ];
 
   points.forEach(function(p) {
