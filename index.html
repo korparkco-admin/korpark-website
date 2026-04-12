@@ -504,10 +504,12 @@
       </div>
       <div class="contact-form">
         <h3>문의하기</h3>
-        <form action="https://formspree.io/f/korpark.co@gmail.com" method="POST" onsubmit="setTimeout(function(){document.getElementById('contact-form').reset();},100);" id="contact-form">
+        <form action="https://formsubmit.co/korpark.co@gmail.com" method="POST" id="contact-form">
           <input type="hidden" name="_subject" value="[KorPark] 새 문의가 도착했습니다">
           <input type="hidden" name="_next" value="https://korpark.com/#contact">
-          <input type="text" name="_gotcha" style="display:none">
+          <input type="hidden" name="_captcha" value="true">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none">
           <div class="form-group">
             <label for="name">이름</label>
             <input type="text" name="name" id="name" placeholder="이름을 입력하세요" required>
@@ -543,7 +545,7 @@
           <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">문의 보내기</button>
         </form>
         <p style="margin-top: 12px; font-size: 0.78rem; color: rgba(255,255,255,0.35); text-align: center;">
-          제출하시면 korpark.co@gmail.com으로 전달됩니다
+          제출 시 korpark.co@gmail.com으로 전달됩니다 (첫 제출 시 이메일 인증 필요)
         </p>
       </div>
     </div>
