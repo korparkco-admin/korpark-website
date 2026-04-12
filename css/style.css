@@ -491,6 +491,12 @@ a:hover { color: var(--accent); }
 .flow-step h4 { color: var(--accent-light); font-size: 0.95rem; margin-bottom: 4px; }
 .flow-step p { color: rgba(255,255,255,0.65); font-size: 0.8rem; margin: 0; }
 
+a.flow-step:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: var(--accent-light);
+  transform: translateY(-4px);
+}
+
 .flow-arrow {
   font-size: 1.5rem;
   color: rgba(255,255,255,0.3);
