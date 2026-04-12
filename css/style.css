@@ -165,8 +165,8 @@ a:hover { color: var(--accent); }
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, rgba(15,43,60,0.75) 0%, rgba(26,61,82,0.7) 40%, rgba(42,90,110,0.6) 100%),
-              url('../images/main.jpeg') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba(15,43,60,0.6) 0%, rgba(26,61,82,0.55) 40%, rgba(42,90,110,0.5) 100%),
+              url('../images/hero-bg.png') center/cover no-repeat;
   position: relative;
   overflow: hidden;
   padding-top: 64px;
