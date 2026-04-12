@@ -188,4 +188,80 @@ document.addEventListener('DOMContentLoaded', function() {
     lightboxOverlay.classList.remove('active');
     document.body.style.overflow = '';
   }
+
+  // ---- Scroll Progress Bar ----
+  var progressBar = document.getElementById('scroll-progress');
+  if (progressBar) {
+    window.addEventListener('scroll', function() {
+      var scrollTop = window.scrollY;
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = progress + '%';
+    });
+  }
+
+  // ---- Image Slider ----
+  document.querySelectorAll('.slider-container').forEach(function(slider) {
+    var track = slider.querySelector('.slider-track');
+    var images = track.querySelectorAll('img');
+    var prevBtn = slider.querySelector('.slider-prev');
+    var nextBtn = slider.querySelector('.slider-next');
+    var dotsContainer = slider.querySelector('.slider-dots');
+    var currentSlide = 0;
+    var total = images.length;
+    var autoPlayTimer;
+
+    // Create dots
+    for (var i = 0; i < total; i++) {
+      var dot = document.createElement('button');
+      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('data-index', i);
+      dot.addEventListener('click', function() {
+        goToSlide(parseInt(this.getAttribute('data-index')));
+      });
+      dotsContainer.appendChild(dot);
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      var dots = dotsContainer.querySelectorAll('.slider-dot');
+      dots.forEach(function(d, i) {
+        d.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    prevBtn.addEventListener('click', function() {
+      goToSlide((currentSlide - 1 + total) % total);
+      resetAutoPlay();
+    });
+
+    nextBtn.addEventListener('click', function() {
+      goToSlide((currentSlide + 1) % total);
+      resetAutoPlay();
+    });
+
+    function resetAutoPlay() {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = setInterval(function() {
+        goToSlide((currentSlide + 1) % total);
+      }, 4000);
+    }
+
+    // Auto play
+    autoPlayTimer = setInterval(function() {
+      goToSlide((currentSlide + 1) % total);
+    }, 4000);
+
+    // Touch swipe support
+    var startX = 0;
+    track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; });
+    track.addEventListener('touchend', function(e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextBtn.click();
+        else prevBtn.click();
+      }
+    });
+  });
 });
