@@ -237,11 +237,16 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   var trekMapEl = document.getElementById('trekMap');
-  if (trekMapEl) {
+  if (trekMapEl && typeof L !== 'undefined') {
     var mapObserver = new IntersectionObserver(function(entries) {
       if (entries[0].isIntersecting) { initTrekMap(); mapObserver.disconnect(); }
     }, { threshold: 0.1 });
     mapObserver.observe(trekMapEl);
+  } else if (trekMapEl) {
+    // Leaflet이 아직 로딩 안 된 경우 대기
+    window.addEventListener('load', function() {
+      if (typeof L !== 'undefined') initTrekMap();
+    });
   }
 
   // ---- Scroll Progress Bar ----
