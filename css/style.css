@@ -948,6 +948,25 @@ a.flow-step:hover {
   box-shadow: 0 2px 12px var(--shadow);
 }
 
+/* Zone card image */
+.zone-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+/* Package card image */
+.package-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 /* Before/After captioned photo pair */
 .photo-figure { margin: 0; display: flex; flex-direction: column; }
 .photo-figure img { width: 100%; height: 260px; object-fit: cover; border-radius: 10px 10px 0 0; box-shadow: 0 2px 12px var(--shadow); }
