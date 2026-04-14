@@ -957,14 +957,25 @@ a.flow-step:hover {
   margin-bottom: 14px;
 }
 
-/* Package card image */
-.package-img {
+/* Package card with image — vertical layout */
+.package-card.has-img {
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  gap: 0;
+}
+.package-card.has-img .package-img {
   width: 100%;
-  height: 120px;
+  height: 180px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  border-radius: 0;
+  margin: 0;
+}
+.package-card.has-img .package-body {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 20px 24px 24px;
 }
 
 /* Before/After captioned photo pair */
@@ -1076,6 +1087,7 @@ a.flow-step:hover {
   .trek-table { font-size: 0.75rem; display: block; overflow-x: auto; }
   .trek-table th, .trek-table td { padding: 8px 10px; white-space: nowrap; }
   .package-card { flex-direction: column; text-align: center; }
+  .package-card.has-img .package-body { flex-direction: column; text-align: center; align-items: center; }
   .package-icon { margin: 0 auto; }
   .hero-stat .number { font-size: 1.6rem; }
   .hero-stat .label { font-size: 0.7rem; }
