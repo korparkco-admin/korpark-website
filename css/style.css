@@ -957,6 +957,14 @@ a.flow-step:hover {
   margin-bottom: 14px;
 }
 
+/* Section CTA wrapper (centered button + note) */
+.section-cta { text-align: center; margin-top: 2rem; }
+.section-cta-note {
+  color: var(--text-light);
+  font-size: 0.88rem;
+  margin-bottom: 0.75rem;
+}
+
 /* Package card with image — vertical layout */
 .package-card.has-img {
   flex-direction: column;
