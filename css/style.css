@@ -1082,6 +1082,20 @@ a.flow-step:hover {
   background: var(--accent);
   color: #fff;
 }
+.phase-item.phase-next {
+  border-color: #f59e0b;
+  background: linear-gradient(135deg, var(--bg-white) 0%, #fff7ed 100%);
+}
+.phase-item.phase-next .phase-tag {
+  background: #f59e0b;
+  color: #fff;
+}
+.phase-note {
+  display: block;
+  margin: 4px 0;
+  font-size: 0.82rem;
+  color: var(--text-light);
+}
 @media (max-width: 768px) {
   .phase-item { grid-template-columns: 1fr; gap: 6px; }
   .phase-tag, .phase-when { width: fit-content; }
