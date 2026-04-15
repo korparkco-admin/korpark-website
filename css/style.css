@@ -957,12 +957,67 @@ a.flow-step:hover {
   margin-bottom: 14px;
 }
 
+/* "Why different / sustainable" highlight block */
+.why-different {
+  background: #f0f7ff;
+  border-left: 4px solid #2563eb;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+.why-different strong { color: var(--primary); font-size: 1rem; }
+.why-different p { margin: 0.5rem 0 0; line-height: 1.7; color: var(--text-dark); }
+
 /* Section CTA wrapper (centered button + note) */
 .section-cta { text-align: center; margin-top: 2rem; }
 .section-cta-note {
   color: var(--text-light);
   font-size: 0.88rem;
   margin-bottom: 0.75rem;
+}
+
+/* Featured package (primary offering, highlighted) */
+.featured-package {
+  background: linear-gradient(135deg, var(--bg-white) 0%, #f0f7ff 100%);
+  border: 2px solid var(--accent);
+  border-radius: 14px;
+  padding: 32px 36px;
+  margin: 1.5rem auto 0;
+  max-width: 720px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 24px rgba(42, 90, 110, 0.12);
+}
+.featured-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+}
+.featured-icon { font-size: 2.5rem; margin-bottom: 8px; }
+.featured-package h3 { font-size: 1.5rem; color: var(--primary); margin-bottom: 8px; }
+.featured-lead { color: var(--text-light); margin-bottom: 1rem; }
+.featured-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 1.2rem;
+  max-width: 420px;
+  text-align: left;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+}
+.featured-list li { padding: 6px 0 6px 22px; position: relative; }
+.featured-list li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
 }
 
 /* Package card with image — vertical layout */
