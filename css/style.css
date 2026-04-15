@@ -275,9 +275,10 @@ a:hover { color: var(--accent); }
 }
 
 .hero-stat .number {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 800;
   color: var(--accent-light);
+  white-space: nowrap;
 }
 
 .hero-stat .label {
@@ -976,7 +977,31 @@ a.flow-step:hover {
   margin-bottom: 0.75rem;
 }
 
-/* Featured package (primary offering, highlighted) */
+/* In-grid featured package card (drone license) */
+.package-card.pkg-featured {
+  border: 2px solid var(--accent);
+  background: linear-gradient(135deg, var(--bg-white) 0%, #f0f7ff 100%);
+  grid-column: 1 / -1;
+}
+.pkg-open-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 14px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.pkg-list {
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  margin: 0.8rem 0;
+  padding-left: 1.2rem;
+  line-height: 1.9;
+}
+
+/* (legacy) Featured package block — no longer used but kept for safety */
 .featured-package {
   background: linear-gradient(135deg, var(--bg-white) 0%, #f0f7ff 100%);
   border: 2px solid var(--accent);
@@ -1152,7 +1177,7 @@ a.flow-step:hover {
   .package-card { flex-direction: column; text-align: center; }
   .package-card.has-img .package-body { flex-direction: column; text-align: center; align-items: center; }
   .package-icon { margin: 0 auto; }
-  .hero-stat .number { font-size: 1.6rem; }
+  .hero-stat .number { font-size: 1.3rem; }
   .hero-stat .label { font-size: 0.7rem; }
   .contact-form { padding: 24px 16px; }
   .info-box { padding: 24px 16px; }
