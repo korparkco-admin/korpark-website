@@ -958,6 +958,21 @@ a.flow-step:hover {
   margin-bottom: 14px;
 }
 
+/* Gallery sub-section headers */
+.gallery-subtitle {
+  font-size: 1.15rem;
+  color: var(--primary);
+  margin: 1rem 0 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.gallery-note {
+  color: var(--text-light);
+  font-size: 0.88rem;
+  margin: 0 0 1rem;
+}
+
 /* Package phase badge (replaces "준비 중" with concrete Phase) */
 .pkg-phase-badge {
   display: inline-block;
