@@ -1,21 +1,33 @@
 // KorPark - korpark.com
 document.addEventListener('DOMContentLoaded', function() {
 
-  // Mobile navigation toggle
+  // Mobile navigation toggle (with X transform + aria-expanded)
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
 
+  function setNavOpen(open) {
+    if (!navToggle || !navLinks) return;
+    navLinks.classList.toggle('active', open);
+    navToggle.classList.toggle('active', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
   if (navToggle) {
     navToggle.addEventListener('click', function() {
-      navLinks.classList.toggle('active');
+      setNavOpen(!navLinks.classList.contains('active'));
     });
   }
 
   // Close mobile menu on link click
   document.querySelectorAll('.nav-links a').forEach(function(link) {
     link.addEventListener('click', function() {
-      navLinks.classList.remove('active');
+      setNavOpen(false);
     });
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') setNavOpen(false);
   });
 
   // Navbar scroll effect

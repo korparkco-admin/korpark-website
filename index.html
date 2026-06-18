@@ -37,7 +37,7 @@
 <nav class="navbar">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">Kor<span>Park</span></a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="primary-nav">
       <li><a href="#about">소개</a></li>
       <li><a href="#programs">드론교육</a></li>
       <li><a href="#camping">캠핑·레저</a></li>
@@ -46,9 +46,9 @@
       <li><a href="#access">오시는길</a></li>
       <li><a href="#contact">문의</a></li>
     </ul>
-    <div class="nav-toggle">
+    <button class="nav-toggle" type="button" aria-label="메뉴 열기/닫기" aria-expanded="false" aria-controls="primary-nav">
       <span></span><span></span><span></span>
-    </div>
+    </button>
   </div>
 </nav>
 
@@ -651,10 +651,10 @@
         <p>외국인 전용 SIM·데이터</p>
       </a>
       <div class="flow-arrow">&#x27A1;</div>
-      <a href="https://korpark.com" target="_blank" class="flow-step" style="text-decoration:none; cursor:pointer;">
-        <div class="icon">&#x1F4DA;</div>
-        <h4>교육</h4>
-        <p><strong style="color:var(--accent-light);">코리아파크</strong><br>현장 심화·자격증 교육</p>
+      <a href="https://korpark.app" target="_blank" class="flow-step" style="text-decoration:none; cursor:pointer;">
+        <div class="icon">&#x1F5FA;</div>
+        <h4>정착 가이드</h4>
+        <p><strong style="color:var(--accent-light);">KorPark.app</strong><br>외국인 정착 인터랙티브 시뮬레이터</p>
       </a>
       <div class="flow-arrow">&#x27A1;</div>
       <a href="https://www.goheung.go.kr" target="_blank" class="flow-step" style="text-decoration:none; cursor:pointer;">
@@ -1097,8 +1097,20 @@
         <li><a href="#programs">프로그램</a></li>
         <li><a href="#trekking">트레킹</a></li>
         <li><a href="#contact">문의</a></li>
-        <li><a href="https://learnkoreantv.com" target="_blank">LearnKoreanTV</a></li>
       </ul>
+    </div>
+
+    <!-- KorPark Family Sites -->
+    <div class="footer-family" style="margin-top:24px; padding:16px 20px; background:rgba(255,255,255,0.04); border-radius:8px; text-align:center;">
+      <p style="font-size:0.82rem; color:rgba(255,255,255,0.55); margin:0 0 8px 0; letter-spacing:0.5px;">KorPark Family</p>
+      <p style="font-size:0.92rem; margin:0; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="https://korpark.com" style="color:var(--accent-light); text-decoration:none;">korpark.com</a>
+        <span style="color:rgba(255,255,255,0.3);">&middot;</span>
+        <a href="https://korpark.app" target="_blank" style="color:var(--accent-light); text-decoration:none;">korpark.app</a>
+        <span style="color:rgba(255,255,255,0.3);">&middot;</span>
+        <a href="https://learnkoreantv.com" target="_blank" style="color:var(--accent-light); text-decoration:none;">learnkoreantv.com</a>
+      </p>
+      <p style="font-size:0.75rem; color:rgba(255,255,255,0.4); margin:8px 0 0 0;">세 사이트는 KorPark(코리아파크)가 공동 운영하는 외국인 정착·다문화 교육 플랫폼입니다.</p>
     </div>
     <div class="sns-links" style="justify-content:center; margin-top:20px;">
       <span class="sns-label">SNS 채널 (개설 예정)</span>
