@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>활동 기록 — KorPark 코리아파크</title>
+  <meta name="description" content="전남 고흥 거금도 캠퍼스의 사업 진척 활동을 시간순으로 기록합니다. 인프라 정비, 시설 정돈, 지역 협력 활동 등 다문화·생활체육 융합 교육센터를 만들어가는 과정.">
+  <meta name="keywords" content="코리아파크 활동 기록,KorPark journal,고흥 거금도 캠퍼스,폐교 정비,제초 작업,다문화 교육센터 진척">
+  <meta property="og:title" content="활동 기록 — KorPark 코리아파크">
+  <meta property="og:description" content="거금도 캠퍼스의 사업 진척을 시간순으로 기록합니다. 한 걸음씩 만들어가는 중.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://korpark.com/activities.html">
+  <meta property="og:image" content="https://korpark.com/images/weeding-after-1.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://korpark.com/images/weeding-after-1.webp">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://korpark.com/activities.html">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Page-specific overrides */
+    .activities-hero {
+      min-height: 40vh;
+      padding: 140px 0 60px;
+      background: linear-gradient(135deg, rgba(15,43,60,0.85) 0%, rgba(42,90,110,0.75) 100%),
+                  url('images/weeding-after-1.webp') center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+    }
+    .activities-hero h1 { color: #fff; font-size: 2.4rem; margin-bottom: 0.6rem; }
+    .activities-hero p { color: rgba(255,255,255,0.85); font-size: 1.05rem; max-width: 640px; margin: 0 auto; }
+    .activities-hero .crumb { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 1rem; }
+    .activities-hero .crumb a { color: rgba(255,255,255,0.85); }
+
+    .timeline { max-width: 1000px; margin: 0 auto; }
+    .activity-entry {
+      background: var(--bg-white);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 32px 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 12px rgba(15,43,60,0.05);
+    }
+    .activity-date {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--primary-light), var(--accent));
+      color: #fff;
+      padding: 4px 14px;
+      border-radius: 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.8rem;
+    }
+    .activity-entry h2 { color: var(--primary); font-size: 1.5rem; margin-bottom: 0.7rem; }
+    .activity-entry .lede { font-size: 1rem; color: var(--text-mid); margin-bottom: 1.4rem; }
+    .activity-meta {
+      display: flex; flex-wrap: wrap; gap: 16px; padding-bottom: 1rem;
+      margin-bottom: 1.2rem; border-bottom: 1px dashed var(--border);
+      font-size: 0.85rem; color: var(--text-light);
+    }
+    .activity-meta strong { color: var(--text-dark); font-weight: 600; }
+
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 1rem;
+    }
+    .ba-grid figure { margin: 0; }
+    .ba-grid img {
+      width: 100%; height: 320px; object-fit: cover;
+      border-radius: 10px; display: block;
+      transition: transform 0.3s;
+    }
+    .ba-grid img:hover { transform: scale(1.02); }
+    .ba-grid figcaption {
+      font-size: 0.82rem; color: var(--text-mid);
+      margin-top: 8px; text-align: center;
+    }
+    .ba-label {
+      display: inline-block;
+      padding: 2px 10px; border-radius: 12px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+      margin-right: 6px;
+    }
+    .ba-label.before { background: #fde7e7; color: #b03a3a; }
+    .ba-label.after  { background: #e2f4ea; color: #2d7a4f; }
+
+    .activity-note {
+      margin-top: 1.4rem; padding: 14px 18px;
+      background: var(--bg-light); border-left: 3px solid var(--accent);
+      border-radius: 6px; font-size: 0.92rem; color: var(--text-mid);
+    }
+
+    .empty-prev {
+      background: var(--bg-light); border-radius: 10px;
+      padding: 24px; text-align: center; color: var(--text-light);
+      font-size: 0.92rem; margin-top: 24px;
+    }
+
+    @media (max-width: 720px) {
+      .activities-hero { padding: 110px 0 40px; }
+      .activities-hero h1 { font-size: 1.8rem; }
+      .activity-entry { padding: 24px 20px; }
+      .ba-grid { grid-template-columns: 1fr; }
+      .ba-grid img { height: 240px; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2BVJ68HBY1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2BVJ68HBY1');
+  </script>
+</head>
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Kor<span>Park</span></a>
+    <ul class="nav-links" id="primary-nav">
+      <li><a href="/#about">소개</a></li>
+      <li><a href="/#programs">드론교육</a></li>
+      <li><a href="/#camping">캠핑·레저</a></li>
+      <li><a href="/#trekking">트레킹</a></li>
+      <li><a href="/#packages">교육과정</a></li>
+      <li><a href="/activities.html" class="active">활동 기록</a></li>
+      <li><a href="/#contact">문의</a></li>
+    </ul>
+    <button class="nav-toggle" type="button" aria-label="메뉴 열기/닫기" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<!-- ============ HERO ============ -->
+<section class="activities-hero">
+  <div class="container">
+    <div class="crumb"><a href="/">KorPark</a> &middot; 활동 기록</div>
+    <h1>활동 기록</h1>
+    <p>코리아파크 거금도 캠퍼스가 한 걸음씩 만들어지는 과정을 시간순으로 남깁니다.<br>인프라 정비 · 시설 정돈 · 지역 협력 활동의 진척 기록입니다.</p>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section class="section">
+  <div class="container">
+    <div class="timeline">
+
+      <article class="activity-entry">
+        <div class="activity-date">2026.05.28</div>
+        <h2>거금도 캠퍼스 1차 제초·정비 작업</h2>
+        <p class="lede">폐교 인수 후 누적된 풀밭과 운동장 가장자리를 정리했습니다. 캠핑·운동장 활용을 위한 1차 시설 정돈 단계.</p>
+
+        <div class="activity-meta">
+          <span><strong>위치</strong> 전남 고흥군 금산면 돈청길 25-17</span>
+          <span><strong>대상</strong> 운동장 · 외부 공간</span>
+          <span><strong>참여</strong> 코리아파크 운영진</span>
+        </div>
+
+        <h3 style="font-size:1.05rem; color:var(--primary); margin-bottom:0.6rem;">
+          <span class="ba-label before">BEFORE</span>제초 전 — 관리 누적된 외부 공간
+        </h3>
+        <div class="ba-grid">
+          <figure>
+            <img loading="lazy" src="images/weeding-before-1.webp" alt="제초 전 외부 공간 모습 1">
+            <figcaption>외부 공간 (제초 전 #1)</figcaption>
+          </figure>
+          <figure>
+            <img loading="lazy" src="images/weeding-before-2.webp" alt="제초 전 외부 공간 모습 2">
+            <figcaption>외부 공간 (제초 전 #2)</figcaption>
+          </figure>
+        </div>
+
+        <h3 style="font-size:1.05rem; color:var(--primary); margin:1.6rem 0 0.6rem;">
+          <span class="ba-label after">AFTER</span>제초 후 — 사용 가능한 상태로 정돈
+        </h3>
+        <div class="ba-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+          <figure>
+            <img loading="lazy" src="images/weeding-after-1.webp" alt="제초 후 운동장·외부 공간 1">
+            <figcaption>정돈된 운동장 (#1)</figcaption>
+          </figure>
+          <figure>
+            <img loading="lazy" src="images/weeding-after-2.webp" alt="제초 후 운동장·외부 공간 2">
+            <figcaption>정돈된 운동장 (#2)</figcaption>
+          </figure>
+          <figure>
+            <img loading="lazy" src="images/weeding-after-3.webp" alt="제초 후 운동장·외부 공간 3">
+            <figcaption>정돈된 운동장 (#3)</figcaption>
+          </figure>
+        </div>
+
+        <div class="activity-note">
+          📍 이 작업은 캠퍼스의 <strong>생활체육·주민교류</strong>(운동장 활용)와 캠핑·레저 활동을 안전히 진행하기 위한 사전 정비입니다. 단계적으로 시설을 사용 가능한 상태로 정돈해 나갑니다.
+        </div>
+      </article>
+
+      <div class="empty-prev">
+        이전 활동 기록은 차차 채워나가겠습니다. 새 활동은 가장 위에 추가됩니다.
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">KorPark 코리아파크</div>
+      <ul class="footer-links">
+        <li><a href="/#about">소개</a></li>
+        <li><a href="/#programs">프로그램</a></li>
+        <li><a href="/#trekking">트레킹</a></li>
+        <li><a href="/activities.html">활동 기록</a></li>
+        <li><a href="/#contact">문의</a></li>
+      </ul>
+    </div>
+
+    <!-- KorPark Family Sites -->
+    <div class="footer-family" style="margin-top:24px; padding:16px 20px; background:rgba(255,255,255,0.04); border-radius:8px; text-align:center;">
+      <p style="font-size:0.82rem; color:rgba(255,255,255,0.55); margin:0 0 8px 0; letter-spacing:0.5px;">KorPark Family</p>
+      <p style="font-size:0.92rem; margin:0; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="https://korpark.com" style="color:var(--accent-light); text-decoration:none;">korpark.com</a>
+        <span style="color:rgba(255,255,255,0.3);">&middot;</span>
+        <a href="https://korpark.app" target="_blank" style="color:var(--accent-light); text-decoration:none;">korpark.app</a>
+        <span style="color:rgba(255,255,255,0.3);">&middot;</span>
+        <a href="https://learnkoreantv.com" target="_blank" style="color:var(--accent-light); text-decoration:none;">learnkoreantv.com</a>
+      </p>
+      <p style="font-size:0.75rem; color:rgba(255,255,255,0.4); margin:8px 0 0 0;">세 사이트는 KorPark(코리아파크)가 공동 운영하는 외국인 정착·다문화 교육 플랫폼입니다.</p>
+    </div>
+
+    <div style="text-align: center; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08);">
+      <p style="font-size: 0.78rem; color: rgba(255,255,255,0.45); margin: 0 0 6px 0;">
+        상호: 코리아파크 &middot; 대표: 홍석찬 &middot; 사업자등록: 203-10-99019
+      </p>
+      <p style="font-size: 0.8rem; color: rgba(255,255,255,0.35); margin: 0;">
+        &copy; 2026 KorPark. Multicultural · 생활체육 · Drone Education Center<br>
+        25-17, Doncheong-gil, Geumsan, Goheung, Jeonnam, Korea
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="js/main.js"></script>
+</body>
+</html>
